@@ -9,13 +9,17 @@ var restifyMongoose = require('restify-mongoose');
 var logger = require('./app/logger')(options, require('bunyan'));
 var server = require('./app/server')(options, require('restify'), logger);
 var db     = require('./app/db')(options, require('mongoose'));
+var zmq    = require('zmq');
 
 require('./app/images/routes.js')(
   server,
   restifyMongoose(
     require('./app/images/ImageModel')(
       db,
-      require('./app/images/ImageSchema')
+      require('./app/images/ImageSchema')(
+        db,
+        require('./app/zmq/publisher')(options, zmq)
+      )
     )
   )
 );

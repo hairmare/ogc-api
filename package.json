@@ -25,6 +25,7 @@
     "mongoose": "^3.8.18",
     "restify": "^2.8.3",
     "restify-mongoose": "^0.2.2",
-    "underscore": "^1.7.0"
+    "underscore": "^1.7.0",
+    "zmq": "^2.8.0"
   }
 }
