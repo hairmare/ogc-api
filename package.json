@@ -1,0 +1,29 @@
+{
+  "name": "ogc-api",
+  "version": "0.0.1",
+  "description": "Online GLSA Checker API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hairmare/ogc-api.git"
+  },
+  "keywords": [
+    "gentoo",
+    "glsa"
+  ],
+  "author": "Lucas Bickel <hairmare@purplehaze.ch>",
+  "license": "AGPL",
+  "bugs": {
+    "url": "https://github.com/hairmare/ogc-api/issues"
+  },
+  "homepage": "https://github.com/hairmare/ogc-api",
+  "dependencies": {
+    "bunyan": "^1.2.1",
+    "mongoose": "^3.8.18",
+    "restify-mongoose": "^0.2.2",
+    "underscore": "^1.7.0"
+  }
+}
