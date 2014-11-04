@@ -1,6 +1,10 @@
 FROM hairmare/node
 Maintainer Lucas Bickel <hairmare@purplehaze.ch>
 
+# install deps
+
+RUN emerge net-libs/zeromq -q
+
 # install app
 
 COPY index.js /opt/ogc-api/index.js
