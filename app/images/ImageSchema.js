@@ -3,15 +3,23 @@
 function ImageSchema(mongoose, zmqSock)
 {
   var schema = new mongoose.Schema({
-    title : { type : String, required : true },
+    _id : { type : String, required : true },
     date : { type : Date, default: Date.now},
-    tags : [String]
+    syncHub: { type: Boolean, default: true },
+    hub: {
+      description: String,
+      is_official: Boolean,
+      is_trusted: Boolean,
+      name: String,
+      star_count: Number
+    },
+    needsBuild: { type: Boolean, default: true }
   });
 
   schema.post('save', function (doc) {
     zmqSock.send(JSON.stringify({
-      event: '/schema/save',
-      docid: doc._id
+      event: '/image/save',
+      "$ref": '/images/' + doc._id
     }));
   });
 

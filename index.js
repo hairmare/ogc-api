@@ -10,19 +10,28 @@ var logger = require('./app/logger')(options, require('bunyan'));
 var server = require('./app/server')(options, require('restify'), logger);
 var db     = require('./app/db')(options, require('mongoose'));
 var zmq    = require('zmq');
+var sock   = require('./app/zmq/publisher')(options, zmq)
 
 require('./app/images/routes.js')(
   server,
   restifyMongoose(
     require('./app/images/ImageModel')(
       db,
-      require('./app/images/ImageSchema')(
-        db,
-        require('./app/zmq/publisher')(options, zmq)
-      )
+      require('./app/images/ImageSchema')(db, sock)
     )
   )
 );
+
+require('./app/builds/routes.js')(
+  server,
+  restifyMongoose(
+    require('./app/builds/BuildModel')(
+      db,
+      require('./app/builds/BuildSchema')(db, sock)
+    )
+  )
+);
+
 
 // these routes must be loaded last
 require('./app/global/routes.js')(
