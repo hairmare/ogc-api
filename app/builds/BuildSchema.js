@@ -20,12 +20,12 @@ function BuildSchema(mongoose, zmqSock)
       done: Date,
       log:  []
     },
-    results: {
+    result: {
       date: Date,
       done: Date,
       log:  []
     },
-    cleanup: {
+    clean: {
       date: Date,
       done: Date,
       log:  []

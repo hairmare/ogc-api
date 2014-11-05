@@ -13,7 +13,7 @@ function main(_, router)
 {
   var newRoutes = [];
   _.each(router.mounts, function(mount) {
-    if (mount.spec.method == "GET") {
+    if (mount.spec.method == "GET" && typeof mount.spec.path == 'string') {
       newRoutes.push({
         "$ref": mount.spec.path
       });
