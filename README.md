@@ -5,18 +5,24 @@
 ## Install
 
 ```
-npm install
+docker pull hairmare/ogc-api
 ```
 
 ## Usage
 
-```
-cp config.json-dist config.json
-node index.js
-```
-
-## Run on Docker
+Run using ``docker run hairmare/ogc-api``
 
 ```
-docker run --link mongodb:mongodb -d -P hairmare/ogc-api
+  Usage: ogc-api <Command> - run the ogc api
+
+    Please refer to each commands --help for details now how to run each service.
+
+  Commands:
+
+    serve [options]   host the ogc api
+
+  Options:
+
+    -h, --help     output usage information
+    -V, --version  output the version number
 ```

@@ -5,21 +5,19 @@ Maintainer Lucas Bickel <hairmare@purplehaze.ch>
 
 RUN emerge net-libs/zeromq -q
 
+# stage app
+
+COPY ogc-api.js /usr/local/src/ogc-api/ogc-api.js
+COPY package.json /usr/local/src/ogc-api/package.json
+COPY README.md /usr/local/src/ogc-api/README.md
+COPY app /usr/local/src/ogc-api/app
+
 # install app
 
-COPY index.js /opt/ogc-api/index.js
-COPY package.json /opt/ogc-api/package.json
-COPY README.md /opt/ogc-api/README.md
-COPY app /opt/ogc-api/app
-
-WORKDIR /opt/ogc-api
-RUN npm install
-
-# configure app
-
-COPY config.json-dist /opt/ogc-api/config.json
+RUN cd /usr/local/src/ogc-api; npm install -g && chmod +x /usr/lib/node_modules/ogc-api/ogc-api.js
 
 # configure runtime
 
-CMD bash -c 'sed -i -e "s|\"mongodb://.*/\(.*\)\"|\"mongodb://"$MONGODB_PORT_27017_TCP_ADDR"/\1\"|" /opt/ogc-api/config.json; /opt/ogc-api/index.js'
+ENTRYPOINT [ "node", "/usr/lib/node_modules/ogc-api/ogc-api.js" ]
+
 EXPOSE 80 3000

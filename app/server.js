@@ -1,10 +1,10 @@
 "use strict";
 
-function bootstrap(options, restify, logger)
+function bootstrap(options, version, restify, logger)
 {
   var server = restify.createServer({
     name: options.name,
-    version: options.version,
+    version: version,
     log: logger
   });
 
@@ -12,6 +12,9 @@ function bootstrap(options, restify, logger)
   server.use(restify.queryParser());
   server.use(restify.bodyParser());
   server.use(restify.requestLogger());
+  if (options.allowCors) {
+    server.use(restify.CORS());
+  }
 
   server.pre(function (request, response, next) {
     request.log.info({ req: request }, 'REQUEST');

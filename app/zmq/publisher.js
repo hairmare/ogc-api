@@ -3,7 +3,7 @@
 function publisher(options, zmq) {
   var sock = zmq.socket('push')
 
-  sock.bindSync(options.zmq.publisher);
+  sock.bindSync(options.zmqPublisher);
 
   return sock;
 }

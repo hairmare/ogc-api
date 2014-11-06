@@ -1,8 +1,0 @@
-{
-  "port": "80",
-  "mongodb_url": "mongodb://localhost/ogc-api",
-
-  "zmq": {
-    "publisher": "tcp://127.0.0.1:3000"
-  }
-}

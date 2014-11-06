@@ -2,7 +2,7 @@
 
 function bootstrap(options, mongoose)
 {
-  mongoose.connect(options.mongodb_url);
+  mongoose.connect('mongodb://'+options.mongodHost+':'+options.mongodbPort+'/'+options.mongodbDb);
   return mongoose;
 }
 
