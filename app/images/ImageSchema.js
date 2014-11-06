@@ -13,7 +13,8 @@ function ImageSchema(mongoose, zmqSock)
       name: String,
       star_count: Number
     },
-    needsBuild: { type: Boolean, default: true }
+    needsBuild: { type: Boolean, default: true },
+    recentBuilds: { type: Array, default: [] }
   });
 
   schema.post('save', function (doc) {
